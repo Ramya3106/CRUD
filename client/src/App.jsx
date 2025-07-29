@@ -30,12 +30,15 @@ function App() {
 
   //Delete User Function
   const handleDelete = async (id) => {
-    await axios
-      .delete(`http://localhost:8000/Users/$Users/${id}`)
-      .then((res) => {
+    const isConfirmed = window.confirm(
+      "Are you sure you want to delete this user?"
+    );
+    if (isConfirmed) {
+      await axios.delete(`http://localhost:8000/Users/${id}`).then((res) => {
         setUsers(res.data);
         setFilterUsers(res.data);
       });
+    }
   };
   return (
     <>
@@ -74,7 +77,7 @@ function App() {
                     </td>
                     <td>
                       <button
-                        onClick={() => handleDelete()}
+                        onClick={() => handleDelete(User.id)}
                         className="btn red"
                       >
                         Delete
