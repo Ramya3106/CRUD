@@ -15,6 +15,12 @@ app.get("/Users", (req, res) => {
   return res.json(Users);
 });
 
+//Delete User Detail
+app.delete("/Users/:id", (req, res) => {
+  let id = Number(req.params.id);
+  let filteredUsers = Users.filter((Users) => User.id !== id);
+});
+
 app.listen(port, (err) => {
   console.log(`App is running in port ${port}`);
 });
