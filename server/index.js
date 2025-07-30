@@ -40,6 +40,20 @@ app.post("/Users", (req, res) => {
   });
 });
 
+//Update User
+app.patch("/Users", (req, res) => {
+  let id = Number(req.params.id);
+  let { name, age, city } = req.body;
+  if (!name || !age || !city) {
+    res.status(400).send({ message: "All Fields Required" });
+  }
+  Users.push({ id, name, age, city });
+
+  fs.writeFile("./sample.json", JSON.stringify(Users), (err, data) => {
+    return res.json({ message: "User detail added success" });
+  });
+});
+
 app.listen(port, (err) => {
   console.log(`App is running in port ${port}`);
 });
