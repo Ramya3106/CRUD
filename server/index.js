@@ -47,7 +47,10 @@ app.patch("/Users", (req, res) => {
   if (!name || !age || !city) {
     res.status(400).send({ message: "All Fields Required" });
   }
-  Users.push({ id, name, age, city });
+
+  let index = Users.findIndex((User) => User.id == id);
+
+  Users.splice(index, 1);
 
   fs.writeFile("./sample.json", JSON.stringify(Users), (err, data) => {
     return res.json({ message: "User detail added success" });
