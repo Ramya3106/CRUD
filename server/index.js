@@ -33,6 +33,8 @@ app.post("/Users", (req, res) => {
     res.status(400).send({ message: "All Fields Required" });
   }
   return res.json({ message: "User detail added success" });
+  let id = Data.now();
+  Users.push({ id, name, age, city });
 });
 
 app.listen(port, (err) => {
