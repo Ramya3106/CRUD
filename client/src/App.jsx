@@ -5,6 +5,8 @@ import "./App.css";
 function App() {
   const [Users, setUsers] = useState([]);
   const [filterUsers, setFilterUsers] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [UserData, setUserData] = useState({ name: "", age: "", city: "" });
 
   const getAllUsers = async () => {
     await axios.get("http://localhost:8000/Users").then((res) => {
@@ -40,6 +42,12 @@ function App() {
       });
     }
   };
+
+  //Add User Details
+  const handleAddRecord = () => {
+    setUserData({ name: "", age: "", city: "" });
+    setIsModalOpen(true);
+  };
   return (
     <>
       <div className="container">
@@ -50,7 +58,9 @@ function App() {
             placeholder="Search Text Here"
             onChange={handleSearchChange}
           />
-          <button className="btn green">Add Record</button>
+          <button className="btn green" onClick={handleAddRecord}>
+            Add Record
+          </button>
         </div>
         <table className="table">
           <thead>
@@ -88,6 +98,14 @@ function App() {
               })}
           </tbody>
         </table>
+        {isModalOpen && (
+          <div className="modal">
+            <span className="close">&times;</span>
+            <div className="modal-content">
+              <h2>User Record</h2>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
