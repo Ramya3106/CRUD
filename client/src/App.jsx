@@ -46,6 +46,7 @@ function App() {
   //Close Modal
   const closeModel = () => {
     setIsModalOpen(false);
+    getAllUsers();
   };
 
   //Add User Details

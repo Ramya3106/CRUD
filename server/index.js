@@ -32,10 +32,10 @@ app.post("/Users", (req, res) => {
   if (!name || !age || !city) {
     res.status(400).send({ message: "All Fields Required" });
   }
-  let id = Data.now();
+  let id = Date.now();
   Users.push({ id, name, age, city });
 
-  fs.writeFile("./sample.json", JSON.stringify(filteredUsers), (err, data) => {
+  fs.writeFile("./sample.json", JSON.stringify(Users), (err, data) => {
     return res.json({ message: "User detail added success" });
   });
 });
