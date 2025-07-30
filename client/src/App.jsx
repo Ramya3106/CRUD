@@ -141,7 +141,7 @@ function App() {
               <span className="close" onClick={closeModal}>
                 &times;
               </span>
-              <h2>User Record</h2>
+              <h2>{UserData.id ? "Update Record" : "Add Record"}</h2>
               <div className="input-group">
                 <label htmlFor="name">Full Name</label>
                 <input
@@ -173,7 +173,7 @@ function App() {
                 />
               </div>
               <button className="btn green" onClick={handleSubmit}>
-                Add User
+                {UserData.id ? "Update User" : "Add User"}
               </button>
             </div>
           </div>
