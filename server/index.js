@@ -50,7 +50,7 @@ app.patch("/Users", (req, res) => {
 
   let index = Users.findIndex((User) => User.id == id);
 
-  Users.splice(index, 1);
+  Users.splice(index, { ...req.body });
 
   fs.writeFile("./sample.json", JSON.stringify(Users), (err, data) => {
     return res.json({ message: "User detail added success" });
