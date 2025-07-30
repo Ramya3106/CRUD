@@ -53,6 +53,10 @@ function App() {
     setUserData({ name: "", age: "", city: "" });
     setIsModalOpen(true);
   };
+  const handleData = (e) => {
+    setUserData({ ...UserData, [e.target.name]: e.target.value });
+  };
+
   return (
     <>
       <div className="container">
@@ -112,15 +116,33 @@ function App() {
               <h2>User Record</h2>
               <div className="input-group">
                 <label htmlFor="name">Full Name</label>
-                <input type="text" name="name" id="name" />
+                <input
+                  type="text"
+                  value={UserData.name}
+                  name="name"
+                  id="name"
+                  onChange={handleData}
+                />
               </div>
               <div className="input-group">
                 <label htmlFor="number">Age</label>
-                <input type="text" name="age" id="age" />
+                <input
+                  type="text"
+                  value={UserData.age}
+                  name="age"
+                  id="age"
+                  onChange={handleData}
+                />
               </div>
               <div className="input-group">
                 <label htmlFor="city">City</label>
-                <input type="text" name="city" id="city" />
+                <input
+                  type="text"
+                  value={UserData.city}
+                  name="city"
+                  id="city"
+                  onChange={handleData}
+                />
               </div>
               <button className="btn green">Add User</button>
             </div>
