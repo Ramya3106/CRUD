@@ -11,8 +11,10 @@ function App() {
   const getAllUsers = async () => {
     await axios.get("http://localhost:8000/Users").then((res) => {
       console.log(res.data);
-      setUsers(res.data);
-      setFilterUsers(res.data);
+      setUsers(res.data.map((user) => ({ ...user, id: user.id || user._id })));
+      setFilterUsers(
+        res.data.map((user) => ({ ...user, id: user.id || user._id }))
+      );
     });
   };
   useEffect(() => {
