@@ -36,10 +36,8 @@ app.post("/Users", (req, res) => {
   Users.push({ id, name, age, city });
 
   fs.writeFile("./sample.json", JSON.stringify(filteredUsers), (err, data) => {
-    return res.json(filteredUsers);
+    return res.json({ message: "User detail added success" });
   });
-
-  return res.json({ message: "User detail added success" });
 });
 
 app.listen(port, (err) => {
