@@ -3,6 +3,7 @@ const cors = require("cors");
 const Users = require("./sample.json");
 const fs = require("fs");
 const app = express();
+app.use(express.json());
 const port = 8000;
 
 app.use(
@@ -23,6 +24,15 @@ app.delete("/Users/:id", (req, res) => {
   fs.writeFile("./sample.json", JSON.stringify(filteredUsers), (err, data) => {
     return res.json(filteredUsers);
   });
+});
+
+//Add New User
+app.post("/Users", (req, res) => {
+  let { name, age, city } = req.body;
+  if (!name || !age || !city) {
+    res.status(400).send({ message: "All Fields Required" });
+  }
+  return res.json({ message: "User detail added success" });
 });
 
 app.listen(port, (err) => {
