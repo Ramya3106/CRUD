@@ -43,6 +43,11 @@ function App() {
     }
   };
 
+  //Close Modal
+  const closeModel = () => {
+    setIsModalOpen(false);
+  };
+
   //Add User Details
   const handleAddRecord = () => {
     setUserData({ name: "", age: "", city: "" });
@@ -100,8 +105,10 @@ function App() {
         </table>
         {isModalOpen && (
           <div className="modal">
-            <span className="close">&times;</span>
             <div className="modal-content">
+              <span className="close" onClick={closeModel}>
+                &times;
+              </span>
               <h2>User Record</h2>
             </div>
           </div>
