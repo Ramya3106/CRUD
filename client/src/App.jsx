@@ -44,7 +44,7 @@ function App() {
   };
 
   //Close Modal
-  const closeModel = () => {
+  const closeModal = () => {
     setIsModalOpen(false);
     getAllUsers();
   };
@@ -59,9 +59,25 @@ function App() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:8000/Users", UserData).then((res) => {
-      console.log(res);
-    });
+    if (UserData.id) {
+      await axios
+        .patch(`http://localhost:8000/Users/${UserData.id}`, UserData)
+        .then((res) => {
+          console.log(res);
+        });
+    } else {
+      await axios.post("http://localhost:8000/Users", UserData).then((res) => {
+        console.log(res);
+      });
+    }
+    closeModal();
+    setUserData({ name: "", age: "", city: "" });
+  };
+
+  //Update User Function
+  const handleUpdateRecord = (User) => {
+    setUserData(User);
+    setIsModalOpen(true);
   };
 
   return (
@@ -99,7 +115,12 @@ function App() {
                     <td>{User.age}</td>
                     <td>{User.city}</td>
                     <td>
-                      <button className="btn green">Edit</button>
+                      <button
+                        className="btn green"
+                        onClick={() => handleUpdateRecord(User)}
+                      >
+                        Edit
+                      </button>
                     </td>
                     <td>
                       <button
@@ -117,7 +138,7 @@ function App() {
         {isModalOpen && (
           <div className="modal">
             <div className="modal-content">
-              <span className="close" onClick={closeModel}>
+              <span className="close" onClick={closeModal}>
                 &times;
               </span>
               <h2>User Record</h2>
