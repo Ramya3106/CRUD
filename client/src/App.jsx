@@ -56,6 +56,12 @@ function App() {
   const handleData = (e) => {
     setUserData({ ...UserData, [e.target.name]: e.target.value });
   };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await axios.post("http://localhost:8000/Users", UserData).then((res) => {
+      console.log(res);
+    });
+  };
 
   return (
     <>
@@ -144,7 +150,9 @@ function App() {
                   onChange={handleData}
                 />
               </div>
-              <button className="btn green">Add User</button>
+              <button className="btn green" onClick={handleSubmit}>
+                Add User
+              </button>
             </div>
           </div>
         )}
