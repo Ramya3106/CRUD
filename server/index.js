@@ -53,7 +53,7 @@ app.patch("/Users", (req, res) => {
   Users.splice(index, { ...req.body });
 
   fs.writeFile("./sample.json", JSON.stringify(Users), (err, data) => {
-    return res.json({ message: "User detail added success" });
+    return res.json({ message: "User detail updated success" });
   });
 });
 
