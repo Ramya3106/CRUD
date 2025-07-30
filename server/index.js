@@ -32,9 +32,14 @@ app.post("/Users", (req, res) => {
   if (!name || !age || !city) {
     res.status(400).send({ message: "All Fields Required" });
   }
-  return res.json({ message: "User detail added success" });
   let id = Data.now();
   Users.push({ id, name, age, city });
+
+  fs.writeFile("./sample.json", JSON.stringify(filteredUsers), (err, data) => {
+    return res.json(filteredUsers);
+  });
+
+  return res.json({ message: "User detail added success" });
 });
 
 app.listen(port, (err) => {
