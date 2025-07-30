@@ -112,7 +112,15 @@ function App() {
               <h2>User Record</h2>
               <div className="input-group">
                 <label htmlFor="name">Full Name</label>
-                <input type="text" name="" id="" />
+                <input type="text" name="name" id="name" />
+              </div>
+              <div className="input-group">
+                <label htmlFor="number">Age</label>
+                <input type="text" name="age" id="age" />
+              </div>
+              <div className="input-group">
+                <label htmlFor="city">City</label>
+                <input type="text" name="city" id="city" />
               </div>
             </div>
           </div>
